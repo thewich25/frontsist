@@ -6,7 +6,8 @@ const API_PORT = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_AP
 const PROTOCOL = typeof window !== 'undefined' ? (window.location.protocol || 'http:') : 'http:';
 const HOSTNAME = typeof window !== 'undefined' ? (window.location.hostname || 'localhost') : 'localhost';
 const HOST_BASE = `${PROTOCOL}//${HOSTNAME}:${API_PORT}/api`;
-const API_BASE_URL = ENV_BASE || HOST_BASE;
+const FALLBACK_PROD = 'https://backendsist.vercel.app/api';
+const API_BASE_URL = ENV_BASE || FALLBACK_PROD || HOST_BASE;
 
 const api = axios.create({
     baseURL: API_BASE_URL,
